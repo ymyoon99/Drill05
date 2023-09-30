@@ -8,8 +8,7 @@ char = load_image('animation_sheet.png')
 cursor = load_image('hand_arrow.png')
 
 def handle_events():
-    global running
-    global x, y
+    global running, x, y
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -38,7 +37,7 @@ def linear_move(pt1,pt2): # 랜덤 위치를 지정 할 함수
 
         clear_canvas()
         TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
-        cursor.draw(x1, x1)
+        cursor.draw(x2, y2)
         char.clip_draw(frame * 100, 100 * 1, 100, 100, x, y)
         frame = (frame + 1) % 8
         delay(0.05)
