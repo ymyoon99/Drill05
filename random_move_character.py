@@ -8,13 +8,15 @@ char = load_image('animation_sheet.png')
 cursor = load_image('hand_arrow.png')
 
 def handle_events():
-    global running, x, y
+    global running
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
             running = False
+            exit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             running = False
+            exit()
 
 running = True
 x, y = TUK_WIDTH // 2, TUK_HEIGHT // 2
@@ -39,7 +41,7 @@ def linear_move(pt1,pt2): # 랜덤 위치를 지정 할 함수
         TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
         cursor.draw(x2, y2)
 
-        if x1 > x2:
+        if x1 > x2: # 왼쪽으로 이동할 때 char.clip_draw 함수 내의 y좌표 조정
             frame2 = 0
         else:
             frame2 = 1
@@ -51,13 +53,12 @@ def linear_move(pt1,pt2): # 랜덤 위치를 지정 할 함수
         update_canvas()
         handle_events()
 
-pass
-
 
 points = [(random.randint(0,TUK_WIDTH), random.randint(0,TUK_HEIGHT)) for n in range(100)]
 # TUK_GROUND 내 좌표 랜덤 생성
 
-for n in range(0,100+1):
+for n in range(0,100):
     linear_move(points[n],points[n+1])
+
 
 close_canvas()
