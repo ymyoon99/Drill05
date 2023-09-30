@@ -27,13 +27,18 @@ frame = 0
 def linear_move(pt1,pt2): # 랜덤 위치를 지정 할 함수
     global frame
 
+    x1, y1 = pt1[0], pt1[1]
+    x2, y2 = pt2[0], pt2[1]
+
     clear_canvas()
+    cursor.draw(x1, x1)
     TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
     char.clip_draw(frame * 100, 100 * 1, 100, 100, x, y)
-    update_canvas()
     frame = (frame + 1) % 8
+    delay(0.05)
+    update_canvas()
     handle_events()
-    pass
+
 
 points = [(random.randint(0,TUK_WIDTH), random.randint(0,TUK_HEIGHT)) for n in range(100)]
 # TUK_GROUND 내 좌표 랜덤 생성
