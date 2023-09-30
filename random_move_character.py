@@ -53,12 +53,10 @@ def linear_move(pt1,pt2): # 랜덤 위치를 지정 할 함수
         update_canvas()
         handle_events()
 
-
 points = [(random.randint(0,TUK_WIDTH), random.randint(0,TUK_HEIGHT)) for n in range(100)]
 # TUK_GROUND 내 좌표 랜덤 생성
 
 for n in range(0,100):
     linear_move(points[n],points[n+1])
-
 
 close_canvas()
