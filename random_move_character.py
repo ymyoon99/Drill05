@@ -30,7 +30,7 @@ def linear_move(pt1,pt2): # 랜덤 위치를 지정 할 함수
     x1, y1 = pt1[0], pt1[1]
     x2, y2 = pt2[0], pt2[1]
 
-    for n in range(0, 100+1,10):
+    for n in range(0, 100+1,1):
 
         t = n / 100
         x = (1 - t) * x1 + t * x2
