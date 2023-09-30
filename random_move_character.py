@@ -3,7 +3,7 @@ import random # randint 함수 사용
 
 TUK_WIDTH, TUK_HEIGHT = 1280, 1024
 open_canvas(TUK_WIDTH, TUK_HEIGHT)
-tuk_ground = load_image('TUK_GROUND.png')
+TUK_ground = load_image('TUK_GROUND.png')
 char = load_image('animation_sheet.png')
 cursor = load_image('hand_arrow.png')
 
@@ -25,12 +25,20 @@ hide_cursor()
 frame = 0
 
 def linear_move(pt1,pt2): # 랜덤 위치를 지정 할 함수
+    global frame
+
     clear_canvas()
     TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
-    character.clip_draw(frame * 100, 100 * 1, 100, 100, x, y)
+    char.clip_draw(frame * 100, 100 * 1, 100, 100, x, y)
     update_canvas()
     frame = (frame + 1) % 8
     handle_events()
     pass
+
+points = [(random.randint(0,TUK_WIDTH), random.randint(0,TUK_HEIGHT)) for n in range(100)]
+# TUK_GROUND 내 좌표 랜덤 생성
+
+for n in range(0,100+1):
+    linear_move(points[n],points[n+1])
 
 close_canvas()
