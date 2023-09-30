@@ -13,8 +13,6 @@ def handle_events():
     for event in events:
         if event.type == SDL_QUIT:
             running = False
-        elif event.type == SDL_MOUSEMOTION:
-            x, y = event.x, TUK_HEIGHT - 1 - event.y
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             running = False
 
@@ -22,12 +20,14 @@ running = True
 x, y = TUK_WIDTH // 2, TUK_HEIGHT // 2
 hide_cursor()
 frame = 0
+frame2 = 0
 
 def linear_move(pt1,pt2): # 랜덤 위치를 지정 할 함수
-    global frame
+    global frame, frame2
 
     x1, y1 = pt1[0], pt1[1]
     x2, y2 = pt2[0], pt2[1]
+
 
     for n in range(0, 100+1,5):
 
@@ -38,8 +38,15 @@ def linear_move(pt1,pt2): # 랜덤 위치를 지정 할 함수
         clear_canvas()
         TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
         cursor.draw(x2, y2)
-        char.clip_draw(frame * 100, 100 * 1, 100, 100, x, y)
+
+        if x1 > x2:
+            frame2 = 0
+        else:
+            frame2 = 1
+
+        char.clip_draw(frame * 100, frame2 * 100, 100, 100, x, y)
         frame = (frame + 1) % 8
+        frame2 = (frame2 + 1) % 8
         delay(0.05)
         update_canvas()
         handle_events()
