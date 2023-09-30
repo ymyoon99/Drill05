@@ -30,15 +30,15 @@ def linear_move(pt1,pt2): # 랜덤 위치를 지정 할 함수
     x1, y1 = pt1[0], pt1[1]
     x2, y2 = pt2[0], pt2[1]
 
-    for n in range(0, 100+1,1):
+    for n in range(0, 100+1,5):
 
         t = n / 100
         x = (1 - t) * x1 + t * x2
         y = (1 - t) * y1 + t * y2
 
         clear_canvas()
-        cursor.draw(x1, x1)
         TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
+        cursor.draw(x1, x1)
         char.clip_draw(frame * 100, 100 * 1, 100, 100, x, y)
         frame = (frame + 1) % 8
         delay(0.05)
